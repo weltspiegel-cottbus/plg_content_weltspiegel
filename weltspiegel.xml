@@ -18,6 +18,10 @@
         <language tag="de-DE">de-DE/plg_content_weltspiegel.ini</language>
     </languages>
 
+    <updateservers>
+        <server type="extension" name="Weltspiegel Content Plugin Updates">https://raw.githubusercontent.com/weltspiegel-cottbus/plg_content_weltspiegel/main/update-manifest.xml</server>
+    </updateservers>
+
     <config>
         <fields name="params">
             <fieldset name="youtube" label="YouTube Settings">
