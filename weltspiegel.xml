@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="plugin" group="content" method="upgrade">
+    <name>plg_content_weltspiegel</name>
+    <version>0.1.0</version>
+    <creationDate>Dezember 2025</creationDate>
+    <author>Michael Buchholz</author>
+    <authorEmail>mail@lean-stack.rocks</authorEmail>
+    <copyright>Weltspiegel Cottbus</copyright>
+    <license>MIT</license>
+    <description>Weltspiegel content plugin for custom placeholders (YouTube, etc.)</description>
+
+    <files>
+        <filename plugin="weltspiegel">weltspiegel.php</filename>
+        <folder>language</folder>
+    </files>
+
+    <languages folder="language">
+        <language tag="de-DE">de-DE/plg_content_weltspiegel.ini</language>
+    </languages>
+
+    <config>
+        <fields name="params">
+            <fieldset name="youtube" label="YouTube Settings">
+                <field
+                    name="yt_placeholder_text"
+                    type="text"
+                    label="Placeholder Text"
+                    description="Text shown when consent not granted"
+                    default="YouTube-Trailer verfügbar"
+                />
+
+                <field
+                    name="yt_placeholder_hint"
+                    type="text"
+                    label="Placeholder Hint"
+                    description="Small text below placeholder"
+                    default="Bitte aktiviere YouTube in den Cookie-Einstellungen"
+                />
+
+                <field
+                    name="yt_responsive"
+                    type="radio"
+                    label="Responsive Embed"
+                    description="Use responsive 16:9 aspect ratio"
+                    default="1"
+                    class="btn-group"
+                >
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </field>
+            </fieldset>
+        </fields>
+    </config>
+</extension>
