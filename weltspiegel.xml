@@ -16,6 +16,9 @@
 
     <languages folder="language">
         <language tag="de-DE">de-DE/plg_content_weltspiegel.ini</language>
+        <language tag="de-DE">de-DE/plg_content_weltspiegel.sys.ini</language>
+        <language tag="en-GB">en-GB/plg_content_weltspiegel.ini</language>
+        <language tag="en-GB">en-GB/plg_content_weltspiegel.sys.ini</language>
     </languages>
 
     <updateservers>
