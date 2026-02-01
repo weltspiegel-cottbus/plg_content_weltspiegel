@@ -2,7 +2,7 @@
 <extension type="plugin" group="content" method="upgrade">
     <name>plg_content_weltspiegel</name>
     <version>0.1.0</version>
-    <creationDate>Dezember 2025</creationDate>
+    <creationDate>10.01.2026</creationDate>
     <author>Michael Buchholz</author>
     <authorEmail>mail@lean-stack.rocks</authorEmail>
     <copyright>Weltspiegel Cottbus</copyright>
