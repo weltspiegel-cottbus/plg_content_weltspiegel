@@ -1,6 +1,15 @@
 # Changelog
 
 
+## v0.1.1
+
+[compare changes](https://github.com/weltspiegel-cottbus/plg_content_weltspiegel/compare/v0.1.0...v0.1.1)
+
+### 🏡 Chore
+
+- Update creation date. ([cf45d1b](https://github.com/weltspiegel-cottbus/plg_content_weltspiegel/commit/cf45d1b))
+- Fix german and add english language strings. ([e9d937b](https://github.com/weltspiegel-cottbus/plg_content_weltspiegel/commit/e9d937b))
+
 ## v0.1.0
 
 
