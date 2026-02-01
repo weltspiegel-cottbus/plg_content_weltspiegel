@@ -5,16 +5,16 @@ A Joomla 5+ content plugin for the Weltspiegel Cottbus cinema website that proce
 ## Features
 
 - **YouTube Embed Placeholder**: Use `{ytvideo VIDEO_ID}` in articles to embed consent-aware YouTube videos
-- **Automatic Thumbnail Caching**: Downloads and caches YouTube thumbnails locally for GDPR-compliant previews
+- **Component Integration**: Renders YouTube embeds using the `com_weltspiegel` layout (which handles thumbnail caching)
 - **Cookie Consent Integration**: Respects user privacy by showing thumbnails until YouTube cookies are accepted
 - **Configurable Defaults**: Admin-configurable placeholder texts and responsive behavior
-- **Modern Joomla 5**: Built with Joomla 5 event system and SubscriberInterface
+- **Modern Joomla 5+**: Built with Joomla event system and SubscriberInterface
 
 ## Requirements
 
-- Joomla 5.0 or higher
+- Joomla 6.0 or higher
 - PHP 8.1 or higher
-- Weltspiegel Template (`tpl_weltspiegel`) for layout overrides
+- Weltspiegel Component (`com_weltspiegel`) for YouTube embed layout
 
 ## Installation
 
@@ -67,8 +67,8 @@ For the video `https://www.youtube.com/watch?v=dQw4w9WgXcQ`, use:
 ### How It Works
 
 1. Plugin detects `{ytvideo VIDEO_ID}` placeholders during content rendering
-2. Fetches and caches the YouTube thumbnail to `images/youtube-thumbnails/`
-3. Renders a consent-aware placeholder with the thumbnail as background
+2. Renders the `com_weltspiegel` YouTube embed layout
+3. The component layout handles thumbnail caching and consent-aware display
 4. When user accepts YouTube cookies, the iframe loads automatically
 5. Direct link to YouTube is always available for users who decline cookies
 
@@ -160,11 +160,10 @@ Contributions are welcome! Please follow these guidelines:
 
 Before submitting a PR:
 
-1. Test on a clean Joomla 5 installation
+1. Test on a clean Joomla 6 installation
 2. Verify plugin enables without errors
 3. Test YouTube embed placeholder parsing
-4. Verify thumbnail download and caching
-5. Test cookie consent integration
+4. Test cookie consent integration
 
 ## Related Projects
 
