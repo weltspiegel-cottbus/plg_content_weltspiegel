@@ -9,6 +9,7 @@
 
 \defined('_JEXEC') or die;
 
+use Joomla\CMS\Factory;
 use Joomla\CMS\Layout\LayoutHelper;
 use Joomla\CMS\Plugin\CMSPlugin;
 use Joomla\Event\Event;
@@ -24,6 +25,11 @@ use Joomla\Event\SubscriberInterface;
 class PlgContentWeltspiegel extends CMSPlugin implements SubscriberInterface
 {
     /**
+     * Custom attribs fields to preserve when saving through standard editor
+     */
+    private const PRESERVE_ATTRIBS = ['source', 'youtube_url'];
+
+    /**
      * Returns an array of events this subscriber will listen to.
      *
      * @return array
@@ -32,6 +38,7 @@ class PlgContentWeltspiegel extends CMSPlugin implements SubscriberInterface
     {
         return [
             'onContentPrepare' => 'onContentPrepare',
+            'onContentBeforeSave' => 'onContentBeforeSave',
         ];
     }
 
@@ -69,6 +76,52 @@ class PlgContentWeltspiegel extends CMSPlugin implements SubscriberInterface
                 $row->text = str_replace($fullMatch, $replacement, $row->text);
             }
         }
+    }
+
+    /**
+     * Preserve custom attribs when saving through standard Joomla article editor
+     *
+     * @param   Event  $event  The event object
+     *
+     * @return  void
+     *
+     * @since   1.0.0
+     */
+    public function onContentBeforeSave(Event $event): void
+    {
+        [$context, $article, $isNew] = array_values($event->getArguments());
+
+        // Only process existing articles in com_content
+        if ($context !== 'com_content.article' || $isNew || empty($article->id)) {
+            return;
+        }
+
+        // Load current attribs from database
+        $db = Factory::getContainer()->get('DatabaseDriver');
+        $query = $db->getQuery(true)
+            ->select($db->quoteName('attribs'))
+            ->from($db->quoteName('#__content'))
+            ->where($db->quoteName('id') . ' = ' . (int) $article->id);
+        $db->setQuery($query);
+        $oldAttribsJson = $db->loadResult();
+
+        if (empty($oldAttribsJson)) {
+            return;
+        }
+
+        $oldAttribs = json_decode($oldAttribsJson, true) ?: [];
+        $newAttribs = is_string($article->attribs)
+            ? (json_decode($article->attribs, true) ?: [])
+            : ($article->attribs ?: []);
+
+        // Preserve custom fields from old attribs if not present in new
+        foreach (self::PRESERVE_ATTRIBS as $field) {
+            if (isset($oldAttribs[$field]) && !isset($newAttribs[$field])) {
+                $newAttribs[$field] = $oldAttribs[$field];
+            }
+        }
+
+        $article->attribs = json_encode($newAttribs);
     }
 
     /**
