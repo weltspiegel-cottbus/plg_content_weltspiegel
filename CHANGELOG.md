@@ -1,6 +1,14 @@
 # Changelog
 
 
+## v0.2.1
+
+[compare changes](https://github.com/weltspiegel-cottbus/plg_content_weltspiegel/compare/v0.2.0...v0.2.1)
+
+### 🩹 Fixes
+
+- Preserve tagline attribute. ([4884b8f](https://github.com/weltspiegel-cottbus/plg_content_weltspiegel/commit/4884b8f))
+
 ## v0.2.0
 
 [compare changes](https://github.com/weltspiegel-cottbus/plg_content_weltspiegel/compare/v0.1.1...v0.2.0)
