@@ -26,13 +26,17 @@ class PlgContentWeltspiegel extends CMSPlugin implements SubscriberInterface
 {
     /**
      * Custom attribs fields to preserve when saving through standard editor
+     *
+     * @since 0.1.0
      */
-    private const PRESERVE_ATTRIBS = ['source', 'youtube_url'];
+    private const array PRESERVE_ATTRIBS = ['source', 'youtube_url', 'tagline'];
 
     /**
      * Returns an array of events this subscriber will listen to.
      *
      * @return array
+     *
+     * @since 0.1.0
      */
     public static function getSubscribedEvents(): array
     {
