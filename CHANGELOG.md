@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v0.2.0
+
+[compare changes](https://github.com/weltspiegel-cottbus/plg_content_weltspiegel/compare/v0.1.1...v0.2.0)
+
+### 🩹 Fixes
+
+- Preserve custom attribs of component-managed articles. ([63e4e30](https://github.com/weltspiegel-cottbus/plg_content_weltspiegel/commit/63e4e30))
+
+### 🏡 Chore
+
+- Updated readme. Resolves #1 ([#1](https://github.com/weltspiegel-cottbus/plg_content_weltspiegel/issues/1))
+
 ## v0.1.1
 
 [compare changes](https://github.com/weltspiegel-cottbus/plg_content_weltspiegel/compare/v0.1.0...v0.1.1)
