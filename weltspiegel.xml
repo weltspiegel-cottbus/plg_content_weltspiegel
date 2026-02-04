@@ -7,7 +7,7 @@
     <authorEmail>mail@lean-stack.rocks</authorEmail>
     <copyright>Weltspiegel Cottbus</copyright>
     <license>MIT</license>
-    <description>Weltspiegel content plugin for custom placeholders (YouTube, etc.)</description>
+    <description>PLG_CONTENT_WELTSPIEGEL_XML_DESCRIPTION</description>
 
     <files>
         <filename plugin="weltspiegel">weltspiegel.php</filename>
