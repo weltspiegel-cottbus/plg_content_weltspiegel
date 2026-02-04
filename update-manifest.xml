@@ -6,10 +6,10 @@
         <element>weltspiegel</element>
         <type>plugin</type>
         <folder>content</folder>
-        <version>1.0.0</version>
+        <version>1.0.1</version>
         <infourl title="GitHub Repository">https://github.com/weltspiegel-cottbus/plg_content_weltspiegel</infourl>
         <downloads>
-            <downloadurl type="full" format="zip">https://github.com/weltspiegel-cottbus/plg_content_weltspiegel/releases/download/v1.0.0/plg_content_weltspiegel-1.0.0.zip</downloadurl>
+            <downloadurl type="full" format="zip">https://github.com/weltspiegel-cottbus/plg_content_weltspiegel/releases/download/v1.0.1/plg_content_weltspiegel-1.0.1.zip</downloadurl>
         </downloads>
         <maintainer>Michael Buchholz</maintainer>
         <maintainerurl>https://www.weltspiegel-cottbus.de</maintainerurl>

@@ -1,6 +1,6 @@
 {
   "name": "plg_content_weltspiegel",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Weltspiegel content plugin for custom placeholders (YouTube, etc.)",
   "type": "module",
   "license": "MIT",
