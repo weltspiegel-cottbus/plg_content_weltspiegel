@@ -3,7 +3,7 @@
     <update>
         <name>Weltspiegel Content Plugin</name>
         <description>Weltspiegel content plugin for custom placeholders (YouTube, etc.)</description>
-        <element>plg_content_weltspiegel</element>
+        <element>weltspiegel</element>
         <type>plugin</type>
         <folder>content</folder>
         <version>1.0.0</version>
@@ -13,7 +13,7 @@
         </downloads>
         <maintainer>Michael Buchholz</maintainer>
         <maintainerurl>https://www.weltspiegel-cottbus.de</maintainerurl>
-        <targetplatform name="joomla" version="6.*"/>
+        <targetplatform name="joomla" version="((5\.[0-9])|(6\.[0-9]))"/>
         <php_minimum>8.1</php_minimum>
     </update>
 </updates>
