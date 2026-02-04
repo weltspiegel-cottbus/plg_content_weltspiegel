@@ -1,6 +1,14 @@
 # Changelog
 
 
+## v1.0.2
+
+[compare changes](https://github.com/weltspiegel-cottbus/plg_content_weltspiegel/compare/v1.0.1...v1.0.2)
+
+### 🏡 Chore
+
+- Update plugin description. ([31612b7](https://github.com/weltspiegel-cottbus/plg_content_weltspiegel/commit/31612b7))
+
 ## v1.0.1
 
 [compare changes](https://github.com/weltspiegel-cottbus/plg_content_weltspiegel/compare/v1.0.0...v1.0.1)
