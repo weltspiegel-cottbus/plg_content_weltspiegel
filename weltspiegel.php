@@ -129,7 +129,7 @@ class PlgContentWeltspiegel extends CMSPlugin implements SubscriberInterface
     }
 
     /**
-     * Generate consent-aware YouTube embed HTML using layout
+     * Generate YouTube embed HTML using component layout
      *
      * @param   string  $videoId  YouTube video ID
      *
@@ -141,9 +141,6 @@ class PlgContentWeltspiegel extends CMSPlugin implements SubscriberInterface
     {
         return LayoutHelper::render('com_weltspiegel.youtube.embed', [
             'videoId' => $videoId,
-            'responsive' => (bool) $this->params->get('yt_responsive', 1),
-            'placeholder' => $this->params->get('yt_placeholder_text', 'YouTube-Trailer verfügbar'),
-            'hint' => $this->params->get('yt_placeholder_hint', 'Bitte aktiviere YouTube in den Cookie-Einstellungen'),
         ]);
     }
 }
