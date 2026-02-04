@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v1.0.0
+
+[compare changes](https://github.com/weltspiegel-cottbus/plg_content_weltspiegel/compare/v0.2.1...v1.0.0)
+
+### 💅 Refactors
+
+- Remove config fields from plugin. ([e711efb](https://github.com/weltspiegel-cottbus/plg_content_weltspiegel/commit/e711efb))
+
+### 🏡 Chore
+
+- Extract contributing guide. Update readme. ([5b8ec10](https://github.com/weltspiegel-cottbus/plg_content_weltspiegel/commit/5b8ec10))
+
 ## v0.2.1
 
 [compare changes](https://github.com/weltspiegel-cottbus/plg_content_weltspiegel/compare/v0.2.0...v0.2.1)
