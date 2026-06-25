@@ -159,9 +159,7 @@ class PlgContentWeltspiegel extends CMSPlugin implements SubscriberInterface
      */
     private function generateYouTubeEmbed(string $videoId): string
     {
-        return LayoutHelper::render('com_weltspiegel.youtube.embed', [
-            'videoId' => $videoId,
-        ], JPATH_SITE . '/components/com_weltspiegel/layouts');
+        return LayoutHelper::render('com_weltspiegel.youtube.embed', ['videoId' => $videoId]);
     }
 
     /**
@@ -247,6 +245,6 @@ class PlgContentWeltspiegel extends CMSPlugin implements SubscriberInterface
             'folder'  => $folder,
             'images'  => $images,
             'options' => $options,
-        ], JPATH_SITE . '/components/com_weltspiegel/layouts');
+        ]);
     }
 }
