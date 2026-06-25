@@ -14,11 +14,12 @@ use Joomla\CMS\Layout\LayoutHelper;
 use Joomla\CMS\Plugin\CMSPlugin;
 use Joomla\Event\Event;
 use Joomla\Event\SubscriberInterface;
+use Joomla\Filesystem\Folder;
 
 /**
  * Weltspiegel Content Plugin
  *
- * Handles custom placeholders like {ytvideo VIDEO_ID}
+ * Handles custom placeholders like {ytvideo VIDEO_ID} and {gallery path}
  *
  * @since 0.1.0
  */
@@ -47,7 +48,15 @@ class PlgContentWeltspiegel extends CMSPlugin implements SubscriberInterface
     }
 
     /**
-     * Plugin that processes {ytvideo} placeholders
+     * Allowed image extensions for gallery scanning
+     *
+     * @var    array
+     * @since  1.1.0
+     */
+    private const array IMAGE_EXTENSIONS = ['jpg', 'jpeg', 'png', 'webp', 'gif'];
+
+    /**
+     * Plugin that processes {ytvideo} and {gallery} placeholders
      *
      * @param   Event  $event  The event object
      *
@@ -65,18 +74,29 @@ class PlgContentWeltspiegel extends CMSPlugin implements SubscriberInterface
             return;
         }
 
-        // Find all {ytvideo VIDEO_ID} placeholders
-        $pattern = '/{ytvideo\s+([a-zA-Z0-9_-]{11})}/i';
+        // Process {ytvideo VIDEO_ID} placeholders
+        $ytPattern = '/{ytvideo\s+([a-zA-Z0-9_-]{11})}/i';
 
-        if (preg_match_all($pattern, $row->text, $matches, PREG_SET_ORDER)) {
+        if (preg_match_all($ytPattern, $row->text, $matches, PREG_SET_ORDER)) {
             foreach ($matches as $match) {
                 $fullMatch = $match[0];
                 $videoId = $match[1];
 
-                // Generate replacement HTML using layout
                 $replacement = $this->generateYouTubeEmbed($videoId);
+                $row->text = str_replace($fullMatch, $replacement, $row->text);
+            }
+        }
 
-                // Replace in content
+        // Process {gallery folder/path} and {gallery folder/path|key=val|key=val} placeholders
+        $galleryPattern = '/{gallery\s+([^}|]+?)(?:\|([^}]*?))?}/i';
+
+        if (preg_match_all($galleryPattern, $row->text, $matches, PREG_SET_ORDER)) {
+            foreach ($matches as $match) {
+                $fullMatch = $match[0];
+                $folder = trim($match[1]);
+                $optionString = $match[2] ?? '';
+
+                $replacement = $this->renderGallery($folder, $this->parseGalleryOptions($optionString));
                 $row->text = str_replace($fullMatch, $replacement, $row->text);
             }
         }
@@ -141,6 +161,92 @@ class PlgContentWeltspiegel extends CMSPlugin implements SubscriberInterface
     {
         return LayoutHelper::render('com_weltspiegel.youtube.embed', [
             'videoId' => $videoId,
-        ]);
+        ], JPATH_SITE . '/components/com_weltspiegel/layouts');
+    }
+
+    /**
+     * Parse gallery option string into associative array
+     *
+     * @param   string  $optionString  Pipe-separated key=value pairs (e.g. "cols=3|preview=hero.jpg")
+     *
+     * @return  array  Parsed options
+     *
+     * @since   1.1.0
+     */
+    private function parseGalleryOptions(string $optionString): array
+    {
+        $options = [];
+
+        if ($optionString === '') {
+            return $options;
+        }
+
+        foreach (explode('|', $optionString) as $pair) {
+            $parts = explode('=', $pair, 2);
+            if (count($parts) === 2) {
+                $options[trim($parts[0])] = trim($parts[1]);
+            }
+        }
+
+        return $options;
+    }
+
+    /**
+     * Get sorted list of image files from a folder
+     *
+     * @param   string  $folderPath  Full filesystem path to the folder
+     *
+     * @return  array  Sorted list of image paths relative to site root
+     *
+     * @since   1.1.0
+     */
+    private function getGalleryImages(string $folderPath, string $relativePath): array
+    {
+        $filter = '\.(' . implode('|', self::IMAGE_EXTENSIONS) . ')$';
+        $files = Folder::files($folderPath, $filter, false, false);
+        sort($files);
+
+        return array_map(
+            fn(string $file): string => $relativePath . '/' . $file,
+            $files
+        );
+    }
+
+    /**
+     * Render a gallery from a folder path and options
+     *
+     * @param   string  $folder   Folder path from the tag (e.g. "images/vorschauen/album")
+     * @param   array   $options  Parsed options from the tag
+     *
+     * @return  string  Rendered gallery HTML or empty string on error
+     *
+     * @since   1.1.0
+     */
+    private function renderGallery(string $folder, array $options): string
+    {
+        // Validate and resolve folder path within JPATH_ROOT
+        $fullPath = realpath(JPATH_ROOT . '/' . $folder);
+        $imagesRoot = realpath(JPATH_ROOT . '/images');
+
+        // Security: ensure path exists and is within /images/
+        if ($fullPath === false || $imagesRoot === false || !str_starts_with($fullPath, $imagesRoot)) {
+            return '';
+        }
+
+        if (!is_dir($fullPath)) {
+            return '';
+        }
+
+        $images = $this->getGalleryImages($fullPath, $folder);
+
+        if (empty($images)) {
+            return '';
+        }
+
+        return LayoutHelper::render('com_weltspiegel.gallery.default', [
+            'folder'  => $folder,
+            'images'  => $images,
+            'options' => $options,
+        ], JPATH_SITE . '/components/com_weltspiegel/layouts');
     }
 }
