@@ -1,6 +1,14 @@
 # Changelog
 
 
+## v1.1.1
+
+[compare changes](https://github.com/weltspiegel-cottbus/plg_content_weltspiegel/compare/v1.1.0...v1.1.1)
+
+### 💅 Refactors
+
+- Back to simple layout loading just by id. ([c2c5f57](https://github.com/weltspiegel-cottbus/plg_content_weltspiegel/commit/c2c5f57))
+
 ## v1.1.0
 
 [compare changes](https://github.com/weltspiegel-cottbus/plg_content_weltspiegel/compare/v1.0.2...v1.1.0)
