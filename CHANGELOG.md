@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v1.1.0
+
+[compare changes](https://github.com/weltspiegel-cottbus/plg_content_weltspiegel/compare/v1.0.2...v1.1.0)
+
+### 🚀 Enhancements
+
+- Add gallery place holder parsing. ([76bcba0](https://github.com/weltspiegel-cottbus/plg_content_weltspiegel/commit/76bcba0))
+
+### 🏡 Chore
+
+- Fix missing client element. ([804ef9b](https://github.com/weltspiegel-cottbus/plg_content_weltspiegel/commit/804ef9b))
+
 ## v1.0.2
 
 [compare changes](https://github.com/weltspiegel-cottbus/plg_content_weltspiegel/compare/v1.0.1...v1.0.2)
