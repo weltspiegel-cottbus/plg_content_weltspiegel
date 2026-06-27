@@ -13,6 +13,7 @@ Embed consent-aware YouTube videos in articles using a simple placeholder syntax
 ```
 
 **Example:** For `https://www.youtube.com/watch?v=dQw4w9WgXcQ`:
+
 ```
 {ytvideo dQw4w9WgXcQ}
 ```
@@ -22,6 +23,7 @@ The plugin replaces the placeholder with the consent-aware YouTube embed from `c
 ### Preserve Custom Article Attributes
 
 When articles are created via `com_weltspiegel` (e.g., Vorschauen, Veranstaltungen), they store custom data in the `attribs` field:
+
 - `source` - Marks the article as component-managed
 - `youtube_url` - YouTube video ID for trailers
 - `tagline` - Short tagline displayed below the title

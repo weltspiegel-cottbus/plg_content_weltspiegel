@@ -54,38 +54,41 @@ npm run release
 ### Version Releases
 
 1. Update version manually in:
-   - `weltspiegel.xml`
-   - `update-manifest.xml`
+    - `weltspiegel.xml`
+    - `update-manifest.xml`
 
 2. Run the appropriate release command:
 
-   **Patch release** (bug fixes: 1.0.0 → 1.0.1):
-   ```bash
-   npm run release:patch
-   ```
+    **Patch release** (bug fixes: 1.0.0 → 1.0.1):
 
-   **Minor release** (new features, backwards compatible: 1.0.0 → 1.1.0):
-   ```bash
-   npm run release:minor
-   ```
+    ```bash
+    npm run release:patch
+    ```
 
-   **Major release** (breaking changes: 1.0.0 → 2.0.0):
-   ```bash
-   npm run release:major
-   ```
+    **Minor release** (new features, backwards compatible: 1.0.0 → 1.1.0):
+
+    ```bash
+    npm run release:minor
+    ```
+
+    **Major release** (breaking changes: 1.0.0 → 2.0.0):
+
+    ```bash
+    npm run release:major
+    ```
 
 3. These commands will:
-   - Bump version in `package.json`
-   - Generate/update `CHANGELOG.md`
-   - Create git commit and tag
-   - Push to repository
-   - Create packaged ZIP file
+    - Bump version in `package.json`
+    - Generate/update `CHANGELOG.md`
+    - Create git commit and tag
+    - Push to repository
+    - Create packaged ZIP file
 
 4. After release:
-   - Go to GitHub Releases
-   - Create a new release from the pushed tag
-   - Upload the generated ZIP file
-   - Write release notes based on CHANGELOG.md
+    - Go to GitHub Releases
+    - Create a new release from the pushed tag
+    - Upload the generated ZIP file
+    - Write release notes based on CHANGELOG.md
 
 ## Project Structure
 

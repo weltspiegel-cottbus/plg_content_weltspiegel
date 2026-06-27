@@ -2,12 +2,12 @@
   "name": "plg_content_weltspiegel",
   "version": "1.1.1",
   "description": "Weltspiegel content plugin for custom placeholders (YouTube videos, image galleries)",
-  "type": "module",
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/weltspiegel-cottbus/plg_content_weltspiegel.git"
   },
+  "type": "module",
   "scripts": {
     "build": "echo 'No assets to build for this plugin'",
     "package": "node .build/package.mjs",
