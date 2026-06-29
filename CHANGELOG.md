@@ -1,6 +1,15 @@
 # Changelog
 
 
+## v1.2.0
+
+[compare changes](https://github.com/weltspiegel-cottbus/plg_content_weltspiegel/compare/v1.1.2...v1.2.0)
+
+### 🚀 Enhancements
+
+- Parse teaser image setting for galleries. ([0cc404e](https://github.com/weltspiegel-cottbus/plg_content_weltspiegel/commit/0cc404e))
+- Handle alt-text setting. ([8d7ef18](https://github.com/weltspiegel-cottbus/plg_content_weltspiegel/commit/8d7ef18))
+
 ## v1.1.2
 
 [compare changes](https://github.com/weltspiegel-cottbus/plg_content_weltspiegel/compare/v1.1.1...v1.1.2)
