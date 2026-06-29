@@ -96,7 +96,7 @@ class PlgContentWeltspiegel extends CMSPlugin implements SubscriberInterface
                 $folder = trim($match[1]);
                 $optionString = $match[2] ?? '';
 
-                $replacement = $this->renderGallery($folder, $this->parseGalleryOptions($optionString));
+                $replacement = $this->renderGallery($folder, $this->parseGalleryOptions($optionString), $row->title ?? '');
                 $row->text = str_replace($fullMatch, $replacement, $row->text);
             }
         }
@@ -183,6 +183,8 @@ class PlgContentWeltspiegel extends CMSPlugin implements SubscriberInterface
             $parts = explode('=', $pair, 2);
             if (count($parts) === 2) {
                 $options[trim($parts[0])] = trim($parts[1]);
+            } elseif (trim($parts[0]) !== '') {
+                $options[trim($parts[0])] = true;
             }
         }
 
@@ -220,7 +222,7 @@ class PlgContentWeltspiegel extends CMSPlugin implements SubscriberInterface
      *
      * @since   1.1.0
      */
-    private function renderGallery(string $folder, array $options): string
+    private function renderGallery(string $folder, array $options, string $articleTitle = ''): string
     {
         // Validate and resolve folder path within JPATH_ROOT
         $fullPath = realpath(JPATH_ROOT . '/' . $folder);
@@ -257,10 +259,11 @@ class PlgContentWeltspiegel extends CMSPlugin implements SubscriberInterface
         }
 
         return LayoutHelper::render('com_weltspiegel.gallery.default', [
-            'folder'      => $folder,
-            'images'      => $images,
-            'options'     => $options,
-            'teaserImage' => $teaserImage,
+            'folder'       => $folder,
+            'images'       => $images,
+            'options'      => $options,
+            'teaserImage'  => $teaserImage,
+            'articleTitle' => $articleTitle,
         ]);
     }
 }
