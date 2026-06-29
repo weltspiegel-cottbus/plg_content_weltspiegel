@@ -241,10 +241,26 @@ class PlgContentWeltspiegel extends CMSPlugin implements SubscriberInterface
             return '';
         }
 
+        $teaserImage = null;
+        $teaser      = $options['teaser'] ?? null;
+
+        if ($teaser === 'random') {
+            $teaserImage = $images[array_rand($images)];
+        } elseif ($teaser !== null) {
+            $teaserFile = basename($teaser);
+            foreach ($images as $img) {
+                if (basename($img) === $teaserFile) {
+                    $teaserImage = $img;
+                    break;
+                }
+            }
+        }
+
         return LayoutHelper::render('com_weltspiegel.gallery.default', [
-            'folder'  => $folder,
-            'images'  => $images,
-            'options' => $options,
+            'folder'      => $folder,
+            'images'      => $images,
+            'options'     => $options,
+            'teaserImage' => $teaserImage,
         ]);
     }
 }
